@@ -21,6 +21,8 @@ contract FunctionsConsumer is FunctionsClient, ConfirmedOwner {
     donId = _donId;
   }
 
+  event FunctionsDataUpdated(bytes32 indexed requestId, bytes response, bytes error);
+
   /**
    * @notice Set the DON ID
    * @param newDonId New DON ID
@@ -71,5 +73,7 @@ contract FunctionsConsumer is FunctionsClient, ConfirmedOwner {
   function fulfillRequest(bytes32 requestId, bytes memory response, bytes memory err) internal override {
     s_lastResponse = response;
     s_lastError = err;
+
+    emit FunctionsDataUpdated(requestId, response, err);
   }
 }
