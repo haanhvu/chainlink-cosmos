@@ -67,7 +67,7 @@ func main() {
 	  _ = meta // may be used for call construction*/
 
 	// create contract instance
-	contract, err := bindings.NewFunctionsConsumer(consumerAddress, ethClient)
+	filterer, err := bindings.NewFunctionsConsumerFilterer(consumerAddress, ethClient)
 	if err != nil {
 		log.Fatalf("new contract: %v", err)
 	}
@@ -101,8 +101,10 @@ func main() {
 			time.Sleep(2 * time.Second)
 			// TODO: robust reconnect logic
 		case vLog := <-logs:
+			log.Printf("Raw log topics: %v\nData: %x\n", vLog.Topics, vLog.Data)
+
 			// Try to parse using generated binding event parser
-			ev, parseErr := contract.ParseFunctionsDataUpdated(vLog)
+			ev, parseErr := filterer.ParseFunctionsDataUpdated(vLog)
 			if parseErr != nil {
 				log.Printf("parse event err: %v", parseErr)
 				continue
@@ -129,7 +131,7 @@ func main() {
 			}*/
 
 			// process: decode transform as needed
-			log.Printf("got event requestId=%x response=%s err=%x", requestId, string(resp), errBytes)
+			log.Printf("got event requestId=%x response=%s err=%x", requestId, string(resp), string(errBytes))
 
 			// submit to substrate (with retry/backoff)
 			op := func() error {
