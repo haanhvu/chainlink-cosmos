@@ -17,7 +17,7 @@ import (
 
 	//"github.com/centrifuge/go-substrate-rpc-client/v4/types"
 	// import your generated bindings package
-	"github.com/haanhvu/chainlink-polkadot/relayer/build/bindings"
+	"github.com/haanhvu/chainlink-polkadot/relayer/bindings"
 	//bolt "go.etcd.io/bbolt"
 )
 
