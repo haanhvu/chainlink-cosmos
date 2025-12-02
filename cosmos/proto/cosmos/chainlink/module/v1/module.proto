@@ -7,13 +7,9 @@ option go_package = "github.com/haanhvu/chainlink-cosmos/cosmos/x/chainlink/type
 
 // Module is the config object for the module.
 message Module {
-  option (cosmos.app.v1alpha1.module) = {
-    go_import: "github.com/haanhvu/chainlink-cosmos/cosmos/x/chainlink"
-  };
+  option (cosmos.app.v1alpha1.module) = {go_import: "github.com/haanhvu/chainlink-cosmos/cosmos/x/chainlink"};
 
   // authority defines the custom module authority.
   // If not set, defaults to the governance module.
   string authority = 1;
-
-  
 }

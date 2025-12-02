@@ -1,11 +1,12 @@
 syntax = "proto3";
+
 package cosmos.chainlink.v1;
 
 import "amino/amino.proto";
+import "cosmos/chainlink/v1/params.proto";
 import "cosmos/msg/v1/msg.proto";
 import "cosmos_proto/cosmos.proto";
 import "gogoproto/gogo.proto";
-import "cosmos/chainlink/v1/params.proto";
 
 option go_package = "github.com/haanhvu/chainlink-cosmos/cosmos/x/chainlink/types";
 
@@ -16,6 +17,9 @@ service Msg {
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
   rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
+
+  // SubmitDataFromChainlinkFunctions defines the SubmitDataFromChainlinkFunctions RPC.
+  rpc SubmitDataFromChainlinkFunctions(MsgSubmitDataFromChainlinkFunctions) returns (MsgSubmitDataFromChainlinkFunctionsResponse);
 }
 
 // MsgUpdateParams is the Msg/UpdateParams request type.
@@ -27,7 +31,7 @@ message MsgUpdateParams {
   string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
   // params defines the module parameters to update.
-  //
+
   // NOTE: All parameters must be supplied.
   Params params = 2 [
     (gogoproto.nullable) = false,
@@ -38,3 +42,13 @@ message MsgUpdateParams {
 // MsgUpdateParamsResponse defines the response structure for executing a
 // MsgUpdateParams message.
 message MsgUpdateParamsResponse {}
+
+// MsgSubmitDataFromChainlinkFunctions defines the MsgSubmitDataFromChainlinkFunctions message.
+message MsgSubmitDataFromChainlinkFunctions {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string data = 2;
+}
+
+// MsgSubmitDataFromChainlinkFunctionsResponse defines the MsgSubmitDataFromChainlinkFunctionsResponse message.
+message MsgSubmitDataFromChainlinkFunctionsResponse {}

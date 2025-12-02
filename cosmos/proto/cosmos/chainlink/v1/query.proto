@@ -2,10 +2,10 @@ syntax = "proto3";
 package cosmos.chainlink.v1;
 
 import "amino/amino.proto";
-import "gogoproto/gogo.proto";
-import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "cosmos/chainlink/v1/params.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
 
 option go_package = "github.com/haanhvu/chainlink-cosmos/cosmos/x/chainlink/types";
 

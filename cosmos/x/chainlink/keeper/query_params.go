@@ -9,7 +9,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-    "github.com/haanhvu/chainlink-cosmos/cosmos/x/chainlink/types"
+	"github.com/haanhvu/chainlink-cosmos/cosmos/x/chainlink/types"
 )
 
 func (q queryServer) Params(ctx context.Context, req *types.QueryParamsRequest) (*types.QueryParamsResponse, error) {

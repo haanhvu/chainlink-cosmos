@@ -21,12 +21,18 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 			},
 		},
 		Tx: &autocliv1.ServiceCommandDescriptor{
-			Service: types.Msg_serviceDesc.ServiceName,
+			Service:              types.Msg_serviceDesc.ServiceName,
 			EnhanceCustomCommand: true, // only required if you want to use the custom command
 			RpcCommandOptions: []*autocliv1.RpcCommandOptions{
 				{
 					RpcMethod: "UpdateParams",
-					Skip:       true, // skipped because authority gated
+					Skip:      true, // skipped because authority gated
+				},
+				{
+					RpcMethod:      "SubmitDataFromChainlinkFunctions",
+					Use:            "submit-data-from-chainlink-functions [data]",
+					Short:          "Send a submit-data-from-chainlink-functions tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "data"}},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},

@@ -10,5 +10,4 @@ option go_package = "github.com/haanhvu/chainlink-cosmos/cosmos/x/chainlink/type
 message Params {
   option (amino.name) = "cosmos/x/chainlink/Params";
   option (gogoproto.equal) = true;
-  
 }

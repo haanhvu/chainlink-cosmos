@@ -3,11 +3,10 @@ package keeper_test
 import (
 	"testing"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 
-    "github.com/haanhvu/chainlink-cosmos/cosmos/x/chainlink/keeper"
-    "github.com/haanhvu/chainlink-cosmos/cosmos/x/chainlink/types"
+	"github.com/haanhvu/chainlink-cosmos/cosmos/x/chainlink/keeper"
+	"github.com/haanhvu/chainlink-cosmos/cosmos/x/chainlink/types"
 )
 
 func TestMsgUpdateParams(t *testing.T) {
