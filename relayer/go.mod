@@ -1,4 +1,4 @@
-module github.com/haanhvu/chainlink-polkadot/relayer
+module github.com/haanhvu/chainlink-cosmos/relayer
 
 go 1.25.4
 
